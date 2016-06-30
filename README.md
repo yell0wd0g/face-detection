@@ -1,4 +1,4 @@
-Users interacting with the world out there using WebCams or other Video Capture Devices have become accustomed to a series of features, such as seeing the human faces in the scene being identified and highlighted. This is particularly true in the case of mobile devices, where hardware manufacturers have been supporting these features for quite some time now. Web Apps do not have access to these hardware capabilities, which makes necessary the use of demanding libraries.
+Users interacting with the world out there using WebCams or other Video Capture Devices have become accustomed to features such as seeing the human faces in the scene being identified and highlighted. This is particularly true in the case of mobile devices, where hardware manufacturers have been supporting these features for quite some time now. Web Apps do not have access to these hardware capabilities, which makes necessary the use of demanding libraries.
 
 Use cases
 =========
