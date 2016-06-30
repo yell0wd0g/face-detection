@@ -1,11 +1,11 @@
-Users interacting with the world out there using WebCams or other Video Capture Devices have become accustomed to features such as seeing the human faces in the scene being identified and highlighted. This is particularly true in the case of mobile devices, where hardware manufacturers have been supporting these features for quite some time now. Web Apps do not have access to these hardware capabilities, which makes necessary the use of demanding libraries.
+Photos and images constitute the largest chunk of the Web, and many include recognisable features, such as human faces. Detecting these features is computationally expensive, but would lead to interesting use cases e.g. face tagging or detection of high saliency areas. Also, users interacting with WebCams or other Video Capture Devices have become accustomed to camera-like features such as seeing the human faces in the scene being identified and highlighted. This is particularly true in the case of mobile devices, where hardware manufacturers have been supporting these features for quite some time now. Sadly, Web Apps do not have access to these hardware capabilities, which makes necessary the use of demanding libraries.
 
 Use cases
 =========
 
-* Live video feeds would like to identify faces in a captured picture/live feed as highly salient areas for e.g. give hints to image or video encoders.
-* Social network webapps would like to quickly identify the human faces in a picture/video and offer the user e.g. the possibility of tagging which name corresponds to what face.
-* Face detection is the first step before Face Recognition.
+* Live video feeds would like to identify faces in a picture/video as highly salient areas for e.g. give hints to image or video encoders.
+* Social network pages would like to quickly identify the human faces in a picture/video and offer the user e.g. the possibility of tagging which name corresponds to what face.
+* Face detection is the first step before Face Recognition, which is otherwise
 * Fun! you can map glasses, funny hats and other overlays
 
 Possible future use cases
