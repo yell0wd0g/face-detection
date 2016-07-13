@@ -3,8 +3,8 @@ Photos and images constitute the largest chunk of the Web, and many include reco
 Use cases
 =========
 
-* Live video feeds would like to identify faces in a picture/video as highly salient areas for e.g. give hints to image or video encoders.
-* Social network pages would like to quickly identify the human faces in a picture/video and offer the user e.g. the possibility of tagging which name corresponds to what face.
+* Live video feeds would like to identify faces in a picture/video as highly salient areas to e.g. give hints to image or video encoders.
+* Social network pages would like to quickly identify the human faces in a picture/video and offer the user e.g. the possibility of tagging which name corresponds to which face.
 * Face detection is the first step before Face Recognition: detected faces are used for the recognition phase, greatly speeding the process. 
 * Fun! you can map glasses, funny hats and other overlays on top of the detected faces
 
@@ -21,7 +21,7 @@ Current Workarounds
 Potential for misuse
 ====================
 
-* Face Detection is an expensive operation due to the algorithmic complexity. Many requests, or demanding systems like a live stream feed with a certain frame rate, could slow down the whole system.
+* Face Detection is an expensive operation due to the algorithmic complexity. Many requests, or demanding systems like a live stream feed with a certain frame rate, could slow down the whole system or greatly increase power consumption.
 
 Platform specific implementation notes
 ======================================
@@ -62,7 +62,7 @@ Usage
 Simple example
 
 ```
- navigator.detectFaces().then(function(bounding_boxes) {
+ navigator.detectFaces(image).then(function(bounding_boxes) {
   for (DOMRect face :  bounding_boxes) {
     console.log("Face detected at (" + face.x + "x" + face.y + ") with size (" +
         face.width + "x" + face.height + ")";
@@ -76,7 +76,7 @@ Notes
 =====
 
 * Using a particular Face Detector does not preclude using others, in this case the hardware provided can provide seeds or weights for user-defined ones.
-* Why is Face Detection having such terrible Complexity? The most/best typical algorithm used is the so-called Viola-Jones that uses a cascade of classifiers of different sizes and gives a horrendous O(n^4) - this [video](https://vimeo.com/12774628) exemplifies how the detection process works.
+* Why does Face Detection having such terrible Complexity? The most/best typical algorithm used is the so-called Viola-Jones that uses a cascade of classifiers of different sizes and gives a horrendous O(n^4) - this [video](https://vimeo.com/12774628) exemplifies how the detection process works.
 
 Open questions
 ==============
