@@ -76,7 +76,7 @@ Notes
 =====
 
 * Using a particular Face Detector does not preclude using others, in this case the hardware provided can provide seeds or weights for user-defined ones.
-* Why does Face Detection having such terrible Complexity? The most/best typical algorithm used is the so-called Viola-Jones that uses a cascade of classifiers of different sizes and gives a horrendous O(n^4) - this [video](https://vimeo.com/12774628) exemplifies how the detection process works.
+* Why does Face Detection have such terrible Complexity? The most/best typical algorithm used is the so-called Viola-Jones that uses a cascade of classifiers of different sizes and gives a horrendous O(n^4) - this [video](https://vimeo.com/12774628) exemplifies how the detection process works.
 
 Open questions
 ==============
