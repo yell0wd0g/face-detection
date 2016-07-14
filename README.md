@@ -62,14 +62,13 @@ Usage
 Simple example
 
 ```
- navigator.detectFaces(image).then(function(bounding_boxes) {
-  for (DOMRect face :  bounding_boxes) {
-    console.log("Face detected at (" + face.x + "x" + face.y + ") with size (" +
-        face.width + "x" + face.height + ")";
+navigator.detectFaces(image).then(boundingBoxes => {
+  for (const face of boundingBoxes) {
+    console.log(`Face detected at (${face.x}, ${face.y}) with size ${face.width}x${face.height}`);
   }
- }).catch(function() {
-   alert("Face detection not supported in your platform");
- });
+}).catch(() => {
+  console.error("Face detection failed");
+});
 ```
 
 Notes
