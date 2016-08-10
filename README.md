@@ -1,17 +1,16 @@
-Photos and images constitute the largest chunk of the Web, and many include recognisable features, such as human faces. Detecting these features is computationally expensive, but would lead to interesting use cases e.g. face tagging or detection of high saliency areas. Also, users interacting with WebCams or other Video Capture Devices have become accustomed to camera-like features such as the ability to focus directly on human faces on the screen of their devices. This is particularly true in the case of mobile devices, where hardware manufacturers have long been supporting these features. Unfortunately, Web Apps do not yet have access to these hardware capabilities, which makes the use of compuationally demanding libraries necessary.
+Photos and images constitute the largest chunk of the Web, and many include recognisable features, such as human faces or QR codes. Detecting these features is computationally expensive, but would lead to interesting use cases e.g. face tagging or detection of high saliency areas. Also, users interacting with WebCams or other Video Capture Devices have become accustomed to camera-like features such as the ability to focus directly on human faces on the screen of their devices. This is particularly true in the case of mobile devices, where hardware manufacturers have long been supporting these features. Unfortunately, Web Apps do not yet have access to these hardware capabilities, which makes the use of compuationally demanding libraries necessary.
 
 Use cases
 =========
 
 * Live video feeds would like to identify faces in a picture/video as highly salient areas to e.g. give hints to image or video encoders.
 * Social network pages would like to quickly identify the human faces in a picture/video and offer the user e.g. the possibility of tagging which name corresponds to which face.
-* Face detection is the first step before Face Recognition: detected faces are used for the recognition phase, greatly speeding the process. 
+* Face detection is the first step before Face Recognition: detected faces are used for the recognition phase, greatly speeding the process.
 * Fun! you can map glasses, funny hats and other overlays on top of the detected faces
 
 Possible future use cases
 =========================
 
-* Hardware vendors provide detectors for other items in widespread use, notably QR codes and text.
 
 Current Workarounds
 ===================
@@ -44,6 +43,12 @@ Rough sketch of a proposal
 ==========================
 
 ```
+enum ShapeType {
+  "face",
+  "qr",
+  // etc...
+};
+
 typedef (HTMLImageElement or
          HTMLVideoElement or
          HTMLCanvasElement or
@@ -52,7 +57,17 @@ typedef (HTMLImageElement or
          ImageBitmap) ImageBitmapSource;
 
 partial interface navigator {
-  Promise <sequence<DOMRect>> detectFaces(ImageBitmapSource);
+  Promise <sequence<DetectedShape>> detectShapes(ShapeType, ImageBitmapSource);
+};
+```
+
+where
+
+```
+interface DetectedShape {
+  readonly attribute ShapeType type;
+  readonly attribute DOMRect boundingBox;
+  readonly attribute ExtrasDictionary extras; // e.g. {'confidence' : 0.9} etc
 };
 ```
 
@@ -62,9 +77,11 @@ Usage
 Simple example
 
 ```
-navigator.detectFaces(image).then(boundingBoxes => {
-  for (const face of boundingBoxes) {
-    console.log(`Face detected at (${face.x}, ${face.y}) with size ${face.width}x${face.height}`);
+navigator.detectShapes('face', image).then(detectedShapes => {
+  for (const shape of detectedShapes) {
+    const what = (shape.type == 'face') ? 'Face' : 'Object';
+    console.log( what + ' detected at (${shape.boundingBox.x}, ${shape.boundingBox.y}),' +
+                ' size ${shape.boundingBox.width}x${shape.boundingBox.height}`);
   }
 }).catch(() => {
   console.error("Face detection failed");
